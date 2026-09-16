@@ -1,0 +1,18 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio - React Frontend + Node.js Backend",
+  "scripts": {
+    "install:server": "cd server && npm install",
+    "install:client": "cd folio && npm install",
+    "build:client": "cd folio && npm install && npm run build",
+    "start": "cd server && npm start",
+    "dev": "cd server && npm run dev"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
