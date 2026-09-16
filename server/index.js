@@ -1,13 +1,28 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
 
 // Middleware
-app.use(cors());
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));
 app.use(express.json());
+
+// Serve static files from frontend build (for combined deployment)
+if (process.env.SERVE_FRONTEND === 'true') {
+  const distPath = path.join(__dirname, '..', 'folio', 'dist');
+  app.use(express.static(distPath));
+  app.get(/^\/(?!api).*/, (req, res) => {
+    res.sendFile(path.join(distPath, 'index.html'));
+  });
+}
 
 // MongoDB Connection
 console.log('Attempting to connect to MongoDB...');
