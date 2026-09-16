@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Navbar height */
+}
+
+@layer base {
+  body {
+    @apply bg-background text-white selection:bg-neonBlue/30 selection:text-neonBlue;
+    overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_35px_120px_-15px_rgba(0,0,0,1)] ring-1 ring-white/10;
+  }
+  
+  .section-card {
+    @apply shadow-[0_50px_100px_-20px_rgba(0,0,0,1),0_0_50px_rgba(0,210,255,0.1)];
+  }
+
+  .neon-border {
+    @apply border border-neonBlue/40 shadow-[0_0_50px_rgba(0,210,255,0.4)];
+  }
+
+  .neon-text {
+    @apply text-neonBlue drop-shadow-[0_0_20px_rgba(0,210,255,0.8)];
+  }
+
+  .btn-primary {
+    @apply relative overflow-hidden px-8 py-3 rounded-full bg-neonBlue text-black font-bold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_50px_rgba(0,210,255,1)] active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply relative overflow-hidden px-8 py-3 rounded-full border border-neonBlue/50 text-neonBlue font-bold transition-all duration-300 hover:bg-neonBlue/10 hover:scale-105 hover:shadow-[0_0_40px_rgba(0,210,255,0.5)] active:scale-95;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-neonBlue/30 rounded-full hover:bg-neonBlue/50 transition-colors;
+}
+
+/* Gradients */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-neonBlue to-white bg-[length:200%_auto] animate-gradient;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  animation: gradient 5s linear infinite;
+}
